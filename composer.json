@@ -1,8 +1,17 @@
 {
-  "name": "martin-schilling/ee-cockpit-php-backend",
-  "description": "",
+  "name": "event-engine/cockpit-php-backend",
+  "description": "PHP PSR-15 based request handlers for Event Engine cockpit requests",
   "type": "library",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Martin Schilling"
+    },
+    {
+      "name": "Alexander Miertsch",
+      "email": "contact@prooph.de"
+    }
+  ],
   "require": {
     "php": "^7.3",
     "roave/security-advisories": "dev-master",
