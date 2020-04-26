@@ -1,0 +1,18 @@
+{
+  "name": "martin-schilling/ee-cockpit-php-backend",
+  "description": "",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^7.3",
+    "roave/security-advisories": "dev-master",
+    "event-engine/php-engine": "^0.14.0",
+    "laminas/laminas-diactoros": "^2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "EventEngine\\EeCockpit\\": "src/"
+    }
+  },
+  "prefer-stable": true
+}
