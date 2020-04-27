@@ -77,6 +77,17 @@ final class EeCockpitHandler implements RequestHandlerInterface
                 },
                 $config['queryMap']
             ),
+            'commands' => $array_map_key(
+                function(string $commandName, array $commandPayloadSchema) use($config) {
+                    return [
+                        'commandName' => $commandName,
+                        'schema' => $commandPayloadSchema,
+                        'aggregateType' => $config['compiledCommandRouting'][$commandName]['aggregateType'] ?? null,
+                        'createAggregate' => $config['compiledCommandRouting'][$commandName]['createAggregate'] ?? false
+                    ];
+                },
+                $config['commandMap']
+            ),
             'definitions' => $messageBoxSchema['definitions']
         ];
 
@@ -93,6 +104,7 @@ final class EeCockpitHandler implements RequestHandlerInterface
 
                         return [
                             'commandName' => $commandName,
+                            'aggregateType' => $commandRouting['aggregateType'],
                             'createAggregate' => $commandRouting['createAggregate'],
                             'schema' => $commandSchema
                         ];
