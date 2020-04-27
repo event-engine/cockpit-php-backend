@@ -44,7 +44,7 @@ final class EeCockpitHandler implements RequestHandlerInterface
 
         throw new \RuntimeException(
             "Could not resolve {$urlParts[\count($urlParts)]} to a handler. " .
-            'Please make sure that you are using a compatible version of the ee-cockpit-php-backen.'
+            'Please make sure that you are using a compatible version of the ee-cockpit-php-backend.'
         );
     }
 
