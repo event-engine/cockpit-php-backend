@@ -69,6 +69,14 @@ final class EeCockpitHandler implements RequestHandlerInterface
             return $newArray;
         };
 
+        $eventAggregateTypeMap = [];
+        foreach ($config['commandMap'] as $commandName => $commandPayloadSchema) {
+            $eventAggregateTypeMap[] = [
+                'aggregateType' => $config['compiledCommandRouting'][$commandName]['aggregateType'] ?? null,
+                'eventRecorderMap' => $config['compiledCommandRouting'][$commandName]['eventRecorderMap'] ?? [],
+            ];
+        }
+
         $responseData = [
             'aggregates' => [],
             'queries' => $array_map_key(
@@ -87,6 +95,22 @@ final class EeCockpitHandler implements RequestHandlerInterface
                     ];
                 },
                 $config['commandMap']
+            ),
+            'events' => $array_map_key(
+                static function(string $eventName, array $eventPayloadSchema) use($eventAggregateTypeMap) {
+                    $aggregateType = null;
+                    foreach ($eventAggregateTypeMap as $event) {
+                        if (array_key_exists($eventName, $event['eventRecorderMap'])) {
+                            $aggregateType = $event['aggregateType'];
+                        }
+                    }
+                    return [
+                        'eventName' => $eventName,
+                        'schema' => $eventPayloadSchema,
+                        'aggregateType' =>  $aggregateType ?? null,
+                    ];
+                },
+                $config['eventMap']
             ),
             'definitions' => $messageBoxSchema['definitions']
         ];
