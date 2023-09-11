@@ -14,9 +14,11 @@
   ],
   "require": {
     "php": "^7.3 || ^8.0",
-    "roave/security-advisories": "dev-master",
     "event-engine/php-engine": "^0.16",
-    "laminas/laminas-diactoros": "^2.2"
+    "laminas/laminas-diactoros": "^2.2 | ^3.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
   },
   "autoload": {
     "psr-4": {
